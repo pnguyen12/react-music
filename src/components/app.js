@@ -7,7 +7,7 @@ export default class App extends Component {
       <div className="app">
         <div className="input">
         <input className="form-control" type="text" placeholder="Enter in an artist name" />
-        <button>Search</button>
+        <button>Search..</button>
         </div>
         <div className="profile">
             <div>Artist name</div>
