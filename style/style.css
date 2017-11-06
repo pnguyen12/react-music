@@ -1,0 +1,22 @@
+.app {
+    text-align: center;
+    padding: 5px;
+}
+
+.input {
+    display: inline;
+}
+
+
+.form-control {
+    width: 10%;
+}
+
+div {
+    color: white;
+    font-size: 19px;
+}
+
+button {
+    background-color: blue;
+}
