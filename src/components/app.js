@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 export default class App extends Component {
   constructor() {
     super();
@@ -20,7 +19,19 @@ export default class App extends Component {
   }
 
   search() {
-    console.log(JSON.stringify(this.state))
+    const BASE_URL = 'https://api.spotify.com/v1/search?';
+    const FETCH_URL = `${BASE_URL}q=${this.state.query}&type=artist&limit=1`;
+    
+
+    var options = {
+      method: 'GET',
+    }
+
+    fetch(FETCH_URL, options)
+    .then(response => response.json())
+    .then(json => {
+        console.log('JSON data', json)
+    });
   }
 
   checkKey(event) {
