@@ -4,6 +4,7 @@ export default class Profile extends React.Component {
  constructor() {
      super();
 
+    
  }
     render() {
         let artist = {
@@ -12,7 +13,7 @@ export default class Profile extends React.Component {
                 total: ''
             }, images: [{
                 url: ''
-            }], genres: ''
+            }], genres: []
         }
 
         if(this.props.artist !== null) {
@@ -21,12 +22,21 @@ export default class Profile extends React.Component {
         console.log('This.props', this.props)
         return (
             <div>
-                <h2> Name: {artist.name}</h2>
-                <h2> Followers: {artist.followers.total}</h2>
-                <img src={artist.images[0].url}/>
-
-            
+                <div className="artist-name"> Name: {artist.name}</div>
+                <div className="artist-followers"> Followers: {artist.followers.total}</div>
+                <div><img className="artist-image" src={artist.images[0].url}/></div>
+                <div className="artist-genre">
+                {artist.genres.map((genre, index) => {
+                    genre = genre !== artist.genres[artist.genres.length -1] ? `${genre}, ` : `& ${genre}`
+                    return (
+                        <div key={index}>
+                            {genre}
+                        </div>
+                    )
+                })}
+                </div>
             </div>
         )
     }
+
 }
