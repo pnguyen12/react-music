@@ -7,11 +7,13 @@ export default class App extends Component {
 
     this.state = {
       query: '',
-      artist: null
+      artist: null,
+      tracks: []
     }
 
     this.search = this.search.bind(this);
     this.changeQuery = this.changeQuery.bind(this);
+    this.renderArtist = this.renderArtist.bind(this);
   }
 
   changeQuery(event) {
@@ -22,8 +24,9 @@ export default class App extends Component {
 
   search() {
     const BASE_URL = 'https://api.spotify.com/v1/search?';
-    const FETCH_URL = `${BASE_URL}q=${this.state.query}&type=artist&limit=1`;
-    var accessToken = 'BQDPgmjXtwmhM1dhjAYuX8uUz0c1qESr_J9UQXQO8em2KDS5LXIDpyYRbO86SqlqGc6BThPPJonAX57L-La3A6tcN7f7nZ1Ov6Lj6mZgtEO4oKpy94V_NhZTzTaNJy5JbU3AHp3zMp4favsKyPRhftIrDeCf1I4e3awfNmJrVQ2j-rAeIQ4&refresh_token=AQBRb0xdcfuT7cS72U8wb8iGiFFKlptbBidT2cb6oOSSrimQXa6ApGgr9jgj4RPg8cFMHLhRZ2kn4yi8LqQEH9FsOsl3HwIN-7PWiW1yKZBjQLbPqsGRYkmhZ4eFlB85044'
+    let FETCH_URL = `${BASE_URL}q=${this.state.query}&type=artist&limit=1`;
+    const ALBUM_URL = 'https://api.spotify.com/v1/artists/'
+    var accessToken = 'BQC2XVRdT0YO6j-9OCFg0RPEUWHH4SVFEvyLgACGmKDn-CsnAioyHs_osysmDLfBq8itzqhgGsPAKgQYXolADscBV-rwKljrLgzRW0a9D8cDifDGdmdedxg0q85OYrXrYZOvDbziXPYfW8erL1sdsUJ4CUwN-bz8zjnwPzezy0Z_qQgUR00&refresh_token=AQDzQNg8Ey-lJBrdKpIMgttgkk8bYjwbGkgg20SFDFrio4JZnpX03vHwiHMtuzTVLBK4lY0PlosQ-ICytu9ZYHv_50jAurtCX5QZKpSZ071M8pNZQSQh8Xw2xkRFmGzj4oQ'
     console.log('access', accessToken)
 
      var options = {
@@ -43,6 +46,18 @@ export default class App extends Component {
         this.setState({
           artist: artist
         })
+
+        FETCH_URL = `${ALBUM_URL}${artist.id}/top-tracks?country=US&`
+        fetch(FETCH_URL, options) 
+        .then(response => response.json())
+        .then(json => {
+          console.log('json data', json);
+          console.log('Json tracks', json.tracks);
+          const tracks = json.tracks;
+          this.setState({
+            tracks: tracks
+          })
+        })
     });
   }
 
@@ -51,16 +66,26 @@ export default class App extends Component {
       this.search();
     }
   }
-  render() {
+
+  renderArtist() {
+    if(this.state.artist != null) {
+      return (
+        <div>
+             <Profile artist={this.state.artist}/>
+        </div>
+      )
+    }
+
+  }
+   render() {
     return (
       <div className="app">
         <div className="input">
           <input onKeyPress={this.checkKey.bind(this)} onChange={this.changeQuery} className="form-control" type="text" placeholder="Enter in an artist name" />
           <button onClick={this.search}>Search</button>
         </div>
-        <Profile artist={this.state.artist}/>
+        {this.renderArtist()}
         <div className="gallery">
-          <div>gallery</div>
         </div>
       </div>
 
