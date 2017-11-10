@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Profile from './Profile';
+import Gallery from './Gallery';
 
 export default class App extends Component {
   constructor() {
@@ -26,7 +27,7 @@ export default class App extends Component {
     const BASE_URL = 'https://api.spotify.com/v1/search?';
     let FETCH_URL = `${BASE_URL}q=${this.state.query}&type=artist&limit=1`;
     const ALBUM_URL = 'https://api.spotify.com/v1/artists/'
-    var accessToken = 'BQC2XVRdT0YO6j-9OCFg0RPEUWHH4SVFEvyLgACGmKDn-CsnAioyHs_osysmDLfBq8itzqhgGsPAKgQYXolADscBV-rwKljrLgzRW0a9D8cDifDGdmdedxg0q85OYrXrYZOvDbziXPYfW8erL1sdsUJ4CUwN-bz8zjnwPzezy0Z_qQgUR00&refresh_token=AQDzQNg8Ey-lJBrdKpIMgttgkk8bYjwbGkgg20SFDFrio4JZnpX03vHwiHMtuzTVLBK4lY0PlosQ-ICytu9ZYHv_50jAurtCX5QZKpSZ071M8pNZQSQh8Xw2xkRFmGzj4oQ'
+    var accessToken = 'BQDtmMI4VDavMY6QaEGC23lr2bpMqI7-dLw6Qhv0Lz83tSoBLIeJUkyky5uUljTrLH8x6P0Fqksh8ycatH7vitgxBA5jcyh248P5bQn8ndprrM3g-3shFEVgFrzrThr1GXhiyQ5_2voTEy45h-hI5PvqZz-DtEMMk9c4XP02pk9KDxcZ31s&refresh_token=AQBrGjofzNTUeg8mIdZsaVO_7pu6CL-YaIpFk35H9BT6BBy67xYW-q-SMZFxDIMiklStH60Ue6on8DmmsqUwQouB9Oa--uC4nzItbpExJMtDA1O-lvRU4fDB9PPTGm94WfQ'
     console.log('access', accessToken)
 
      var options = {
@@ -86,6 +87,7 @@ export default class App extends Component {
         </div>
         {this.renderArtist()}
         <div className="gallery">
+          <Gallery tracks={this.state.tracks}/>
         </div>
       </div>
 
