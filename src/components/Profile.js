@@ -25,7 +25,7 @@ export default class Profile extends React.Component {
             <div className="profile">
                 <div className="artist-name"> Name: {artist.name}</div>
                 <div className="artist-followers"> Followers: {artist.followers.total}</div>
-                <div><img className="artist-image" src={artist.images[0].url} /></div>
+                <div><a href={artist.images[0].url}><img className="artist-image" src={artist.images[0].url} /></a></div>
                 <div className="artist-genre">
                     {artist.genres.map((genre, index) => {
                         genre = genre !== artist.genres[artist.genres.length - 1] ? `${genre}, ` : `& ${genre}`

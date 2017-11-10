@@ -27,10 +27,10 @@ export default class App extends Component {
     const BASE_URL = 'https://api.spotify.com/v1/search?';
     let FETCH_URL = `${BASE_URL}q=${this.state.query}&type=artist&limit=1`;
     const ALBUM_URL = 'https://api.spotify.com/v1/artists/'
-    var accessToken = 'BQDtmMI4VDavMY6QaEGC23lr2bpMqI7-dLw6Qhv0Lz83tSoBLIeJUkyky5uUljTrLH8x6P0Fqksh8ycatH7vitgxBA5jcyh248P5bQn8ndprrM3g-3shFEVgFrzrThr1GXhiyQ5_2voTEy45h-hI5PvqZz-DtEMMk9c4XP02pk9KDxcZ31s&refresh_token=AQBrGjofzNTUeg8mIdZsaVO_7pu6CL-YaIpFk35H9BT6BBy67xYW-q-SMZFxDIMiklStH60Ue6on8DmmsqUwQouB9Oa--uC4nzItbpExJMtDA1O-lvRU4fDB9PPTGm94WfQ'
+    var accessToken = 'BQAsk1sZzUkEYdx7TEV1NL5E1g18lzYOdMbY1CCI_G054kpCJgorBN7BfeL3AvZPvzdEl69HCTsOylDRpAXUIKWfxBufXgPV6Uwp2C3dy2feOXfFQtI58Dvp29jk-SfIqfJ_8p5lHLYMDVVLEuJejmTmRurA8rXcx6mp9xYiA0CPoUDEreM&refresh_token=AQDCcICVDf15nIw2gOI8poVmX1OgLCMQF_MW0VBaUQ6PD493F-jbVt8-DzIvI4-jLRBq3V7gcYE6LCo6hAxh1l_ckGcqAzRcJLA5-GeH-VrmQ3fIyF0KodQlGVhIHsuQ19g';
     console.log('access', accessToken)
 
-     var options = {
+    var options = {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + accessToken
@@ -40,8 +40,8 @@ export default class App extends Component {
     };
 
     fetch(FETCH_URL, options)
-    .then(response => response.json())
-    .then(json => {
+      .then(response => response.json())
+      .then(json => {
         console.log('JSON data', json.artists.items[0])
         let artist = json.artists.items[0]
         this.setState({
@@ -49,17 +49,17 @@ export default class App extends Component {
         })
 
         FETCH_URL = `${ALBUM_URL}${artist.id}/top-tracks?country=US&`
-        fetch(FETCH_URL, options) 
-        .then(response => response.json())
-        .then(json => {
-          console.log('json data', json);
-          console.log('Json tracks', json.tracks);
-          const tracks = json.tracks;
-          this.setState({
-            tracks: tracks
+        fetch(FETCH_URL, options)
+          .then(response => response.json())
+          .then(json => {
+            console.log('json data', json);
+            console.log('Json tracks', json.tracks);
+            const tracks = json.tracks;
+            this.setState({
+              tracks: tracks
+            })
           })
-        })
-    });
+      });
   }
 
   checkKey(event) {
@@ -69,28 +69,32 @@ export default class App extends Component {
   }
 
   renderArtist() {
-    if(this.state.artist != null) {
+    if (this.state.artist != null) {
       return (
         <div>
-             <Profile artist={this.state.artist}/>
+          <Profile artist={this.state.artist} />
         </div>
       )
     }
 
   }
-   render() {
+  render() {
     return (
-      <div className="app">
-        <div className="input">
-          <input onKeyPress={this.checkKey.bind(this)} onChange={this.changeQuery} className="form-control" type="text" placeholder="Enter in an artist name" />
-          <button onClick={this.search}>Search</button>
+      <div>
+        <div className="app">
+         <div className="input-group">
+          <input onKeyPress={this.checkKey.bind(this)} onChange={this.changeQuery} type="text" className="form-control" placeholder="Search for..." />
+          <span className="input-group-btn">
+            <button onClick={this.search} className="btn btn-secondary" type="button">Go!</button>
+          </span>
         </div>
-        {this.renderArtist()}
-        <div className="gallery">
-          <Gallery tracks={this.state.tracks}/>
+          {this.renderArtist()}
+          <div className="gallery">
+            <Gallery tracks={this.state.tracks} />
+          </div>
         </div>
+       
       </div>
-
     );
   }
 }

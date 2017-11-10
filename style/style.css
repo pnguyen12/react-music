@@ -32,3 +32,31 @@ button {
 img:hover {
     opacity: 0.5;
 }
+
+
+
+figcaption {
+    text-align: center;
+    background-color: white;
+    color: black;
+    opacity: 0.75;
+    width: 92%;
+    margin-left: 13px;
+}
+
+figure {
+
+   
+}
+
+/*.profile{
+    height: 300px;
+    width: 1100px;
+    background-color: white;
+    color: black;
+}
+
+div {
+    color: black;
+}*/
+
