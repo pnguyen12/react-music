@@ -27,7 +27,7 @@ export default class App extends Component {
     const BASE_URL = 'https://api.spotify.com/v1/search?';
     let FETCH_URL = `${BASE_URL}q=${this.state.query}&type=artist&limit=1`;
     const ALBUM_URL = 'https://api.spotify.com/v1/artists/'
-    var accessToken = 'BQAsk1sZzUkEYdx7TEV1NL5E1g18lzYOdMbY1CCI_G054kpCJgorBN7BfeL3AvZPvzdEl69HCTsOylDRpAXUIKWfxBufXgPV6Uwp2C3dy2feOXfFQtI58Dvp29jk-SfIqfJ_8p5lHLYMDVVLEuJejmTmRurA8rXcx6mp9xYiA0CPoUDEreM&refresh_token=AQDCcICVDf15nIw2gOI8poVmX1OgLCMQF_MW0VBaUQ6PD493F-jbVt8-DzIvI4-jLRBq3V7gcYE6LCo6hAxh1l_ckGcqAzRcJLA5-GeH-VrmQ3fIyF0KodQlGVhIHsuQ19g';
+    var accessToken = 'BQDzW0edAzyeMyuaXae4-hz_D4q6OwDwEhZ_6Qp9q7gA80AWUTcM8GqCOFk9hpI1VkoGyREuj-E4N1MRFTBDz59b5YGkIX0DblBEoQFA4oF4SMj1ZbO3qHCB_eUssS-Fw2DOU-hvUE8yRaatSKSIHnOw_Jn676p0sZ586OLOqSFZHaNRn-4&refresh_token=AQCS38-Owk8B5N7AYxHtAE5uNEGuogvF1TGI1pZbSpWTUAujIiyzaLsqUtd42BvF599dvsbKZSdyMU4zYrHJd3ArOLHCvWaYzLm4_2GA6F5JLyQRyK7VBKaJZJvz2APzS2s'
     console.log('access', accessToken)
 
     var options = {
