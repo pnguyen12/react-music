@@ -21,11 +21,18 @@ export default class Gallery extends React.Component {
                 playing: true,
                 playingUrl: url,
                 audio: audio
+            }, () => {
+                console.log('current play status', this.state.playing)
             })
         } else {
             console.log('******audio*********', audio)
             if(this.state.playingUrl === url) {
                 this.state.audio.pause();
+                this.setState({
+                    playing: false
+                },() => {
+                    console.log('pause state' , this.state.playing);
+                })
             } else {
                 this.state.audio.pause();
                 audio.play();
@@ -34,10 +41,13 @@ export default class Gallery extends React.Component {
                     playing: true,
                     playingUrl: url,
                     audio
+                }, () => {
+                    console.log('current playing last' , this.state.playing)
                 })
             }
         }
     }
+   
     renderTracks() {
         return this.props.tracks.map((track, index) => {
             const album = track.album.images[0].url
@@ -46,6 +56,10 @@ export default class Gallery extends React.Component {
 
                 <figure key={index} style={{ padding: 20 }} className="col-sm-4">
                     <img onClick={() => this.playSong(track.preview_url)} width={300} height={300} style={{ cursor: 'pointer' }} src={album} />
+                    <div className="track-play">
+                       <i style={{display: this.state.playing ? 'none' : ''}}className="fa fa-play" aria-hidden="true">Play</i>
+                       <i style={{display: this.state.playing ? '': 'none'}}className="fa fa-play" aria-hidden="true">Pause</i>
+                    </div>
                     <figcaption>{track.name}</figcaption>
                 </figure>
 
