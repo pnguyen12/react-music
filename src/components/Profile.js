@@ -7,10 +7,10 @@ export default class Profile extends React.Component {
 
     }
 
-    playAudio(previewUrl) {
-        let audio = new Audio(previewUrl);
-        audio.play();
-    }
+    // playAudio(previewUrl) {
+    //     let audio = new Audio(previewUrl);
+    //     audio.play();
+    // }
 
     render() {
         let artist = {

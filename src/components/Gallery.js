@@ -10,6 +10,7 @@ export default class Gallery extends React.Component {
             audio: null
         }
         this.renderTracks = this.renderTracks.bind(this);
+        this.playSong = this.playSong.bind(this);
     }
 
     playSong(url) {
